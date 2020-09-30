@@ -1,7 +1,7 @@
 const loggingMsg = (message, repeat) => {
-  console.log(`${"*".repeat(repeat)} ${message} ${"*".repeat(repeat)}`);
+  console.log(`\n${'*'.repeat(repeat)} ${message} ${'*'.repeat(repeat)}\n`);
 };
 
 module.exports = {
-  loggingMsg,
+  loggingMsg
 };

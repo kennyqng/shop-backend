@@ -1,7 +1,7 @@
-const router = require("express").Router();
+const router = require('express').Router();
 
-const registerRoute = require("./register");
+const registerRoute = require('./register');
 
-router.use("/register", registerRoute);
+router.use('/register', registerRoute);
 
 module.exports = router;
