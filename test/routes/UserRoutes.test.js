@@ -12,10 +12,6 @@ app.use(express.json());
 app.use(routes);
 
 describe('User Routes', () => {
-  /*  beforeEach(() => {
-    jest.useFakeTimers();
-  });
-*/
   describe('POST /api/user/registration', () => {
     it('Success case ', async () => {
       const mock = jest.spyOn(UserController, 'registerUser');
@@ -34,7 +30,7 @@ describe('User Routes', () => {
         .post('/api/user/register')
         .send(stateObj);
 
-      expect(response.body).toEqual({ msg: 'User added' });
+      expect(response.body).toEqual({ msg: 'User added.' });
       expect(response.statusCode).toEqual(200);
     });
 
@@ -48,7 +44,7 @@ describe('User Routes', () => {
         .post('/api/user/register')
         .send(stateObj);
 
-      expect(response.statusCode).toEqual(400);
+      expect(response.statusCode).toEqual(422);
       expect(response.body).toEqual({ msg: 'First Name is required.\n' });
     });
 
@@ -62,7 +58,7 @@ describe('User Routes', () => {
         .post('/api/user/register')
         .send(stateObj);
 
-      expect(response.statusCode).toEqual(400);
+      expect(response.statusCode).toEqual(422);
       expect(response.body).toEqual({ msg: 'Last Name is required.\n' });
     });
     it('should give error - no email', async () => {
@@ -75,7 +71,7 @@ describe('User Routes', () => {
         .post('/api/user/register')
         .send(stateObj);
 
-      expect(response.statusCode).toEqual(400);
+      expect(response.statusCode).toEqual(422);
       expect(response.body).toEqual({ msg: 'Email is required.\n' });
     });
 
@@ -90,7 +86,7 @@ describe('User Routes', () => {
         .post('/api/user/register')
         .send(stateObj);
 
-      expect(response.statusCode).toEqual(400);
+      expect(response.statusCode).toEqual(422);
       expect(response.body).toEqual({ msg: 'Password is required.\n' });
     });
   });

@@ -42,7 +42,7 @@ router.post('*', async (req, res) => {
     errorObj = { ...errorMsg(errorObj, 'Email') };
   }
   if (errorObj.hasErr === true) {
-    return res.status(400).json({ msg: errorObj.msg });
+    return res.status(422).json({ msg: errorObj.msg });
   }
 
   try {
@@ -53,10 +53,14 @@ router.post('*', async (req, res) => {
       hashedPassword,
       email
     );
-    return res.status(200).json({ msg: 'User added' });
+    return res.status(200).json({ msg: 'User added.' });
   } catch (err) {
-    console.log(err);
-    return res.status(400).send();
+    let dbErr = null;
+    if (err.code === 11000) {
+      dbErr = { msg: 'Duplication of email.', keyValue: err.keyValue };
+    }
+
+    return res.status(400).send(dbErr || null);
   }
 });
 

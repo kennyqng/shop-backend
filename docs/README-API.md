@@ -20,9 +20,13 @@
 > 
 > Return: 
 > - Success: status code 200;
->
-> - Error: status code 500;
->	
+>		- msg: "User added."
+> - Error: 
+>		- Status Code 400	
+>			- Error with database.	
+>		- status code 422
+>			- msg - "${parameter} is required."
+>				- one or more parameters are missing.
 >	 
 ### Login 
 > Usage login using email and password
