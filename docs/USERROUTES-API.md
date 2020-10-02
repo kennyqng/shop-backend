@@ -26,6 +26,20 @@
 >			- Duplicate Email:
 >				- msg: "Duplication of email"
 >				-	keyValue: {{email: value }} - keyvalue that causes the error;
+>			- Incorrectly format Email:
+>				 "email": {
+>						"name": "ValidatorError",
+>						"message": "Email is not in the right format.",
+>						"properties": {
+>							"message": "Email is not in the right format.",
+>							"type": "user defined",
+>							"path": "email",
+>							"value": "{email}"
+>						},
+>						"kind": "user defined",
+>						"path": "email",
+>						"value": "{email}"
+>    }
 >		- status code 422
 >			- msg - "${parameter} is required.": one or more parameters are missing.
 >

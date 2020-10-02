@@ -1,10 +1,7 @@
 const router = require('express').Router();
 
 const { UserController } = require('../../controllers');
-const {
-  /* loggingMsg, */ encryptPassword,
-  isValidParam
-} = require('../../utils');
+const { loggingMsg, encryptPassword, isValidParam } = require('../../utils');
 
 const errorMsg = (errObj, variable) => ({
   // No space b/c new line from previous time.
@@ -22,7 +19,7 @@ const errorMsg = (errObj, variable) => ({
  * @param {Object} res - express respond object.
  * */
 router.post('*', async (req, res) => {
-  // loggingMsg('/api/user/register', 30);
+  loggingMsg('/api/user/register', 30);
   const {
     firstName, lastName, password, email
   } = req.body;
@@ -55,12 +52,13 @@ router.post('*', async (req, res) => {
     );
     return res.status(200).json({ msg: 'User added.' });
   } catch (err) {
+    console.log(err);
     let dbErr = null;
     if (err.code === 11000) {
       dbErr = { msg: 'Duplication of email.', keyValue: err.keyValue };
     }
 
-    return res.status(400).send(dbErr || null);
+    return res.status(400).json({ ...(dbErr || null), ...err.errors });
   }
 });
 

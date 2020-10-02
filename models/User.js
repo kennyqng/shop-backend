@@ -15,7 +15,8 @@ const UserSchema = new Schema({
     validate: {
       // only validate for mat of _@_._ .  Will have to implement email confirmation to
       // actually validate if it is a correct email
-      validator: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+      validator: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
+      message: 'Email is not in the right format.'
     }
   }
   /*  address: {
